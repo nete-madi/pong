@@ -35,11 +35,13 @@ namespace Pong
         {
             if (ball.pos.X > _graphics.PreferredBackBufferWidth - tex.Width / 2)
             {
-                ball.pos.X = _graphics.PreferredBackBufferWidth - tex.Width / 2;
+                // grant a point to bar1 and reset
+                ResetGame(_graphics);
             }
             else if (ball.pos.X < tex.Width / 2)
             {
-                ball.pos.X = tex.Width / 2;
+                // grant a point to bar2 and reset
+                ResetGame(_graphics);
             }
 
             if (ball.pos.Y > _graphics.PreferredBackBufferHeight - tex.Height / 2)
@@ -59,11 +61,6 @@ namespace Pong
             ballSpriteBatch.Begin();
             ballSpriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             ballSpriteBatch.End();
-        }
-
-        public void ResetGame()
-        {
-            // reset the game when someone scores a point
         }
 
         #endregion
@@ -102,6 +99,13 @@ namespace Pong
                 top *= -1;
                 sound.CreateInstance().Play();
             }
+        }
+
+        private void ResetGame(GraphicsDeviceManager _graphics)
+        {
+            // reset the game when someone scores a point
+            pos.X = _graphics.PreferredBackBufferWidth / 2;
+            pos.Y = _graphics.PreferredBackBufferHeight / 2;
         }
 
         #endregion
