@@ -14,6 +14,7 @@ namespace Pong
         public Vector2 pos;
         public static float speed = 150f;
         public Texture2D tex;
+        public static SpriteBatch barSpriteBatch;
 
         #endregion
 
@@ -44,7 +45,10 @@ namespace Pong
 
         public void Draw()
         {
-            // draw the bar with the spritebatch: https://github.com/HadiCya/Pong-MonoGame/blob/master/Ball.cs
+            barSpriteBatch.Begin();
+            barSpriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            barSpriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            barSpriteBatch.End();
         }
 
         #endregion

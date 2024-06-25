@@ -8,8 +8,6 @@ namespace Pong
 {
     public class Game1 : Game
     {
-        private SpriteBatch _barSpriteBatch;
-
         private readonly GraphicsDeviceManager _graphics;
 
         Rectangle bar1Bounds, bar2Bounds;
@@ -48,7 +46,7 @@ namespace Pong
         protected override void LoadContent()
         {
             ball.ballSpriteBatch = new SpriteBatch(GraphicsDevice);
-            _barSpriteBatch = new SpriteBatch(GraphicsDevice);
+            Bar.barSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load your ball texture.
             ball.tex = Content.Load<Texture2D>("ball");
@@ -81,12 +79,8 @@ namespace Pong
             GraphicsDevice.Clear(Color.Black);
 
             ball.Draw();
-
-            _barSpriteBatch.Begin();
-            _barSpriteBatch.Draw(bar1.tex, bar1.pos, null, Color.White, 0f, new Vector2(bar1.tex.Width / 2, bar1.tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _barSpriteBatch.Draw(bar2.tex, bar2.pos, null, Color.White, 0f, new Vector2(bar2.tex.Width / 2, bar2.tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _barSpriteBatch.End();
-
+            bar1.Draw();
+            bar2.Draw();
 
             base.Draw(gameTime);
         }
