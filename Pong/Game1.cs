@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Pong
 {
@@ -30,8 +28,6 @@ namespace Pong
         }
 
         // Initialize game on startup.
-        // Called after constructor, but before main game loop.
-        // You can query any required services and load any non-graphic related content.
         protected override void Initialize()
         {
             ball = new Ball(new Vector2(_windowWidth / 2, _windowHeight / 2), 200f, null);
