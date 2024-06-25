@@ -8,12 +8,10 @@ namespace Pong
 {
     public class Game1 : Game
     {
-        private SpriteBatch _ballSpriteBatch;
         private SpriteBatch _barSpriteBatch;
 
         private readonly GraphicsDeviceManager _graphics;
 
-        Texture2D bar1Texture, bar2Texture;
         Rectangle bar1Bounds, bar2Bounds;
         public int _windowHeight;
         public int _windowWidth;
@@ -49,7 +47,7 @@ namespace Pong
         // Load content. This is called once per game within the initialize method, before the main game loop (Update/Draw)
         protected override void LoadContent()
         {
-            _ballSpriteBatch = new SpriteBatch(GraphicsDevice);
+            ball.ballSpriteBatch = new SpriteBatch(GraphicsDevice);
             _barSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load your ball texture.
@@ -67,12 +65,12 @@ namespace Pong
 
             MoveBarsKb(gameTime);
 
+            bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
+            bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
+
             ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime);
             bar1.Update(bar1, _graphics);
             bar2.Update(bar2, _graphics);
-
-            bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
-            bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
 
             base.Update(gameTime);
         }
@@ -82,10 +80,7 @@ namespace Pong
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _ballSpriteBatch.Begin();
-            // This Draw method sets the center of the ball when the default "center" of a sprite is the top left corner.
-            _ballSpriteBatch.Draw(ball.tex, ball.pos, null, Color.White, 0f, new Vector2(ball.tex.Width / 2, ball.tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _ballSpriteBatch.End();
+            ball.Draw();
 
             _barSpriteBatch.Begin();
             _barSpriteBatch.Draw(bar1.tex, bar1.pos, null, Color.White, 0f, new Vector2(bar1.tex.Width / 2, bar1.tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
