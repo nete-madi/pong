@@ -55,8 +55,6 @@ namespace Pong
 
         public void Draw()
         {
-            // draw the ball with the spritebatch: https://github.com/HadiCya/Pong-MonoGame/blob/master/Ball.cs
-            // This Draw method sets the center of the ball when the default "center" of a sprite is the top left corner.
             ballSpriteBatch.Begin();
             ballSpriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             ballSpriteBatch.End();
