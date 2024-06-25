@@ -1,7 +1,7 @@
-## pong - made with MonoGame
+# pong - made with MonoGame
 Basic game of Pong, built with MonoGame 3.8.
 
-# To play:
+### To play:
 - Download the release [here](https://github.com/nete-madi/pong/releases).
 - Run the executable.
 - Find a friend to play with.
