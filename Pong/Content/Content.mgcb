@@ -49,3 +49,9 @@
 /processorParam:TextureFormat=Color
 /build:bar2.png
 
+#begin pixel-bounce.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:pixel-bounce.wav
+

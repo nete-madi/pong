@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Pong
 {
@@ -30,7 +31,7 @@ namespace Pong
         #endregion
 
         #region Public Methods
-        public void Update(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime)
+        public void Update(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime, SoundEffect sound)
         {
             if (ball.pos.X > _graphics.PreferredBackBufferWidth - tex.Width / 2)
             {
@@ -50,7 +51,7 @@ namespace Pong
                 ball.pos.Y = tex.Height / 2;
             }
 
-            CheckIntersect(ball, bar1, bar2, _graphics, gameTime);
+            CheckIntersect(ball, bar1, bar2, _graphics, gameTime, sound);
         }
 
         public void Draw()
@@ -69,7 +70,7 @@ namespace Pong
 
         #region Private Methods
 
-        private void CheckIntersect(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime)
+        private void CheckIntersect(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime, SoundEffect sound)
         {
             // ballBounds is going to be a square for now. but eventually you should be able to write your own circle class and compute collision that way.
             ballBounds = new Rectangle((int)ball.pos.X, (int)ball.pos.Y, tex.Width, tex.Height);
@@ -84,18 +85,22 @@ namespace Pong
             if (ballBounds.Intersects(bar1))
             {
                 right = 1;
+                sound.CreateInstance().Play();
             }
             if (ballBounds.Intersects(bar2))
             {
                 right = -1;
+                sound.CreateInstance().Play();
             }
             if (ball.pos.Y < 23) // TODO: figure out why this number works...lol
             {
                 top *= -1;
+                sound.CreateInstance().Play();
             }
             if (ball.pos.Y > _graphics.PreferredBackBufferHeight - tex.Height)
             {
                 top *= -1;
+                sound.CreateInstance().Play();
             }
         }
 

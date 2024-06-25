@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Pong
 {
@@ -15,6 +16,8 @@ namespace Pong
         Ball ball;
         Bar bar1;
         Bar bar2;
+
+        SoundEffect ping;
 
         // Tell the project how to start.
         public Game1()
@@ -44,10 +47,11 @@ namespace Pong
             ball.ballSpriteBatch = new SpriteBatch(GraphicsDevice);
             Bar.barSpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Load your ball texture.
             ball.tex = Content.Load<Texture2D>("ball");
             bar1.tex = Content.Load<Texture2D>("bar1");
             bar2.tex = Content.Load<Texture2D>("bar2");
+
+            ping = Content.Load<SoundEffect>("pixel-bounce");
 
         }
 
@@ -62,7 +66,7 @@ namespace Pong
             bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
             bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
 
-            ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime);
+            ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime, ping);
             bar1.Update(bar1, _graphics);
             bar2.Update(bar2, _graphics);
 
