@@ -52,7 +52,7 @@ namespace Pong
             ball.tex = Content.Load<Texture2D>("ball");
             bar1.tex = Content.Load<Texture2D>("bar1");
             bar2.tex = Content.Load<Texture2D>("bar2");
-            font = Content.Load<SpriteFont>("File");
+            font = Content.Load<SpriteFont>("Score");
 
             ping = Content.Load<SoundEffect>("pixel-bounce");
 
