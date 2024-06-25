@@ -7,6 +7,8 @@ namespace Pong
 {
     public class Game1 : Game
     {
+        #region Variables
+
         private readonly GraphicsDeviceManager _graphics;
 
         public int _windowHeight, _windowWidth;
@@ -20,6 +22,10 @@ namespace Pong
         SpriteFont font;
         SpriteBatch spriteBatch;
 
+        #endregion
+
+        #region Constructor
+
         // Tell the project how to start.
         public Game1()
         {
@@ -30,6 +36,10 @@ namespace Pong
             _windowWidth = _graphics.PreferredBackBufferWidth;
 
         }
+
+        #endregion
+
+        #region Game Initialization
 
         // Initialize game on startup.
         protected override void Initialize()
@@ -58,7 +68,11 @@ namespace Pong
 
         }
 
-        // Update game state -- this is called on a regular interval. Called multiple times per second.
+        #endregion
+
+        #region Main Game Loop
+
+        // Update game state.
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -93,6 +107,10 @@ namespace Pong
             base.Draw(gameTime);
         }
 
+        #endregion
+
+        #region Private Methods
+
         private void MoveBarsKb(GameTime gameTime)
         {
             KeyboardState kstate = Keyboard.GetState();
@@ -124,5 +142,7 @@ namespace Pong
         {
             // TODO: add gamepad support
         }
+
+        #endregion
     }
 }
