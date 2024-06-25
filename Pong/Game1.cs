@@ -71,15 +71,6 @@ namespace Pong
             bar1.Update(bar1, _graphics);
             bar2.Update(bar2, _graphics);
 
-            //if (bar2Position.Y > _windowHeight - bar2Texture.Height / 2)
-            //{
-            //    bar2Position.Y = _windowHeight - bar2Texture.Height / 2;
-            //}
-            //else if (bar2Position.Y < bar2Texture.Height / 2)
-            //{
-            //    bar2Position.Y = bar2Texture.Height / 2;
-            //}
-
             bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
             bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
 
