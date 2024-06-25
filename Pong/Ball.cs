@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Pong;
 
 namespace Pong
 {
@@ -31,16 +32,18 @@ namespace Pong
         #endregion
 
         #region Public Methods
-        public void Update(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime, SoundEffect sound)
+        public void Update(Ball ball, Rectangle bar1, Rectangle bar2, GraphicsDeviceManager _graphics, GameTime gameTime, SoundEffect sound, ref int leftScore, ref int rightScore)
         {
             if (ball.pos.X > _graphics.PreferredBackBufferWidth - tex.Width / 2)
             {
                 // grant a point to bar1 and reset
+                leftScore++;
                 ResetGame(_graphics);
             }
             else if (ball.pos.X < tex.Width / 2)
             {
                 // grant a point to bar2 and reset
+                rightScore++;
                 ResetGame(_graphics);
             }
 

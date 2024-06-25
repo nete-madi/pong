@@ -9,15 +9,16 @@ namespace Pong
     {
         private readonly GraphicsDeviceManager _graphics;
 
-        Rectangle bar1Bounds, bar2Bounds;
-        public int _windowHeight;
-        public int _windowWidth;
+        public int _windowHeight, _windowWidth;
+        public int leftScore = 0, rightScore = 0;
 
+        Rectangle bar1Bounds, bar2Bounds;
         Ball ball;
         Bar bar1;
         Bar bar2;
-
         SoundEffect ping;
+        SpriteFont font;
+        SpriteBatch spriteBatch;
 
         // Tell the project how to start.
         public Game1()
@@ -46,10 +47,12 @@ namespace Pong
         {
             ball.ballSpriteBatch = new SpriteBatch(GraphicsDevice);
             Bar.barSpriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ball.tex = Content.Load<Texture2D>("ball");
             bar1.tex = Content.Load<Texture2D>("bar1");
             bar2.tex = Content.Load<Texture2D>("bar2");
+            font = Content.Load<SpriteFont>("File");
 
             ping = Content.Load<SoundEffect>("pixel-bounce");
 
@@ -66,7 +69,7 @@ namespace Pong
             bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
             bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
 
-            ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime, ping);
+            ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime, ping, ref leftScore, ref rightScore);
             bar1.Update(bar1, _graphics);
             bar2.Update(bar2, _graphics);
 
@@ -81,6 +84,11 @@ namespace Pong
             ball.Draw();
             bar1.Draw();
             bar2.Draw();
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, leftScore.ToString(), new Vector2(100, 50), Color.White);
+            spriteBatch.DrawString(font, rightScore.ToString(), new Vector2(_graphics.PreferredBackBufferWidth - 112, 50), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
