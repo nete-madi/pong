@@ -11,6 +11,8 @@ namespace Pong
         #region Variables
 
         private readonly GraphicsDeviceManager _graphics;
+        private States _currentState;
+        private States _nextState;
 
         public int _windowHeight, _windowWidth;
         public int leftScore = 0, rightScore = 0;
@@ -56,6 +58,10 @@ namespace Pong
         // Load content. This is called once per game within the initialize method, before the main game loop (Update/Draw)
         protected override void LoadContent()
         {
+            _currentState = new SpriteBatch(GraphicsDevice);
+            _currentState.LoadContent();
+            _nextState = null;
+
             ball.ballSpriteBatch = new SpriteBatch(GraphicsDevice);
             Bar.barSpriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -76,6 +82,21 @@ namespace Pong
         // Update game state.
         protected override void Update(GameTime gameTime)
         {
+            {
+                if (_nextState != null)
+                {
+                    _currentState = _nextState;
+                    _currentState.LoadContent();
+
+                    _nextState = null;
+                }
+
+                _currentState.Update(gameTime);
+                _currentState.PostUpdate(gameTime);
+            }
+
+            base.Update(gameTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -87,13 +108,18 @@ namespace Pong
             ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime, ping, ref leftScore, ref rightScore);
             bar1.Update(bar1, _graphics);
             bar2.Update(bar2, _graphics);
+        }
 
-            base.Update(gameTime);
+        public void ChangeState (States state)
+        {
+            _nextState = state;
         }
 
         // Called on a regular interval to draw game entities to the screen. Called multiple times per second.
         protected override void Draw(GameTime gameTime)
         {
+            _currentState.Draw(gameTime, spriteBatch);
+
             GraphicsDevice.Clear(Color.Black);
 
             ball.Draw();
