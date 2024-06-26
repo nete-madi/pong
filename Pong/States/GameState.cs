@@ -52,10 +52,6 @@ namespace Pong.States
             font = _content.Load<SpriteFont>("fonts/Score");
             ping = _content.Load<SoundEffect>("sounds/pixel-bounce");
         }
-        public override void PostUpdate(GameTime gameTime)
-        {
-            
-        }
         public override void Update(GameTime gameTime)
         {
             MoveBarsKb(gameTime);
