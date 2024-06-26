@@ -13,8 +13,6 @@ namespace Pong.Sprites
         public Rectangle ballBounds;
         public Texture2D tex;
 
-        public SpriteBatch ballSpriteBatch;
-
         private int right = 1, top = 1;
 
         #endregion
@@ -58,11 +56,11 @@ namespace Pong.Sprites
             CheckIntersect(ball, bar1, bar2, _graphics, gameTime, sound);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            ballSpriteBatch.Begin();
-            ballSpriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            ballSpriteBatch.End();
+            spriteBatch.Begin();
+            spriteBatch.Draw(tex, pos, null, Color.White, 0f, new Vector2(tex.Width / 2, tex.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            spriteBatch.End();
         }
 
         #endregion
