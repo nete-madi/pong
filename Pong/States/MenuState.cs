@@ -29,7 +29,7 @@ namespace Pong.States
         public override void LoadContent()
         {
             var button = _content.Load<Texture2D>("assets/button");
-            var buttonFont = _content.Load<SpriteFont>("fonts/buttonfont");
+            var buttonFont = _content.Load<SpriteFont>("fonts/Score");
             menuBg = _content.Load<Texture2D>("assets/menu");
 
             _components = new List<Component>()
