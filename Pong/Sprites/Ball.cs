@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
-using Pong;
 
-namespace Pong
+namespace Pong.Sprites
 {
     internal class Ball
     {
