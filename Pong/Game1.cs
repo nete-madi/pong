@@ -59,12 +59,12 @@ namespace Pong
             Bar.barSpriteBatch = new SpriteBatch(GraphicsDevice);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ball.tex = Content.Load<Texture2D>("ball");
-            bar1.tex = Content.Load<Texture2D>("bar1");
-            bar2.tex = Content.Load<Texture2D>("bar2");
-            font = Content.Load<SpriteFont>("Score");
+            ball.tex = Content.Load<Texture2D>("assets/ball");
+            bar1.tex = Content.Load<Texture2D>("assets/bar1");
+            bar2.tex = Content.Load<Texture2D>("assets/bar2");
+            font = Content.Load<SpriteFont>("fonts/Score");
 
-            ping = Content.Load<SoundEffect>("pixel-bounce");
+            ping = Content.Load<SoundEffect>("sounds/pixel-bounce");
 
         }
 
