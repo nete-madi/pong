@@ -4,24 +4,24 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Pong.Sprites;
-using System;
 
 namespace Pong.States
 {
     public class GameState : State
     {
         private readonly GraphicsDeviceManager _graphics;
+        private readonly Ball ball;
+        private readonly Bar bar1;
+        private readonly Bar bar2;
+
         private Rectangle bar1Bounds, bar2Bounds;
-        private Ball ball;
-        private Bar bar1;
-        private Bar bar2;
         private SoundEffect ping;
         private SpriteFont font;
         private int leftScore = 0, rightScore = 0;
 
-        public static int _windowWidth, _windowHeight;
+        private static int _windowWidth, _windowHeight;
 
-        public GameState(Game1 game, ContentManager content) : base(game, content)
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             _graphics = new GraphicsDeviceManager(game);
             _windowHeight = _graphics.PreferredBackBufferHeight;
@@ -93,10 +93,10 @@ namespace Pong.States
             }
         }
 
-        private void MoveBarsGamepad(GameTime gameTime)
-        {
-            // TODO: add gamepad support
-        }
+        //private void MoveBarsGamepad(GameTime gameTime)
+        //{
+        //    // TODO: add gamepad support
+        //}
 
         #endregion
     }

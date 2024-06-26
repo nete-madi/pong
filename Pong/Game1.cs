@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
-using Pong.Sprites;
 using Pong.States;
 
 namespace Pong
@@ -13,8 +11,10 @@ namespace Pong
 
         private State _currentState;
         private State _nextState;
+        private GraphicsDeviceManager _graphics;
 
         SpriteBatch spriteBatch;
+        public static int ScreenWidth, ScreenHeight;
 
         #endregion
 
@@ -23,9 +23,11 @@ namespace Pong
         // Tell the project how to start.
         public Game1()
         {
-            _currentState = new GameState(this, Content);
-            Content.RootDirectory = "Content";
+            Window.AllowUserResizing = false;
             IsMouseVisible = true;
+            _graphics = new GraphicsDeviceManager(this);
+            ScreenWidth = _graphics.PreferredBackBufferWidth;
+            ScreenHeight = _graphics.PreferredBackBufferHeight;
         }
 
         #endregion
@@ -34,16 +36,15 @@ namespace Pong
 
         // Initialize game on startup.
         protected override void Initialize()
-        { 
+        {
             base.Initialize();
         }
-
 
         // Load content. This is called once per game within the initialize method, before the main game loop (Update/Draw)
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentState.LoadContent();
+            _currentState = new MenuState(this, GraphicsDevice, Content);
             _nextState = null;
         }
 
@@ -67,7 +68,6 @@ namespace Pong
                 }
 
                 _currentState.Update(gameTime);
-                // _currentState.PostUpdate(gameTime);
             }
 
             base.Update(gameTime);
