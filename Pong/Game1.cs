@@ -45,6 +45,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new MenuState(this, GraphicsDevice, Content);
+            _currentState.LoadContent();
             _nextState = null;
         }
 
@@ -67,7 +68,7 @@ namespace Pong
                     _nextState = null;
                 }
 
-                _currentState.Update(gameTime);
+                _currentState.Update(gameTime, _graphics);
             }
 
             base.Update(gameTime);

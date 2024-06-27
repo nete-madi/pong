@@ -9,7 +9,6 @@ namespace Pong.States
 {
     public class GameState : State
     {
-        private readonly GraphicsDeviceManager _graphics;
         private readonly Ball ball;
         private readonly Bar bar1;
         private readonly Bar bar2;
@@ -17,19 +16,14 @@ namespace Pong.States
         private Rectangle bar1Bounds, bar2Bounds;
         private SoundEffect ping;
         private SpriteFont font;
-        private int leftScore = 0, rightScore = 0;
 
-        private static int _windowWidth, _windowHeight;
+        int leftScore = 0, rightScore = 0;
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            _graphics = new GraphicsDeviceManager(game);
-            _windowHeight = _graphics.PreferredBackBufferHeight;
-            _windowWidth = _graphics.PreferredBackBufferWidth;
-
-            ball = new Ball(new Vector2(_windowWidth / 2, _windowHeight / 2), 200f, null);
-            bar1 = new Bar(new Vector2(50, _windowHeight / 2), 150f, null);
-            bar2 = new Bar(new Vector2(_windowWidth - 50, _windowHeight / 2), 150f, null);
+            ball = new Ball(new Vector2(Game1.ScreenWidth / 2, Game1.ScreenHeight / 2), 200f, null);
+            bar1 = new Bar(new Vector2(50, Game1.ScreenWidth / 2), 150f, null);
+            bar2 = new Bar(new Vector2(Game1.ScreenWidth - 50, Game1.ScreenHeight / 2), 150f, null);
 
             content.RootDirectory = "Content";
         }
@@ -41,7 +35,7 @@ namespace Pong.States
 
             spriteBatch.Begin();
             spriteBatch.DrawString(font, leftScore.ToString(), new Vector2(100, 50), Color.White);
-            spriteBatch.DrawString(font, rightScore.ToString(), new Vector2(_graphics.PreferredBackBufferWidth - 112, 50), Color.White);
+            spriteBatch.DrawString(font, rightScore.ToString(), new Vector2(Game1.ScreenWidth - 112, 50), Color.White);
             spriteBatch.End();
         }
         public override void LoadContent()
@@ -52,16 +46,16 @@ namespace Pong.States
             font = _content.Load<SpriteFont>("fonts/Score");
             ping = _content.Load<SoundEffect>("sounds/pixel-bounce");
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             MoveBarsKb(gameTime);
 
             bar1Bounds = new Rectangle((int)bar1.pos.X, (int)bar1.pos.Y, bar1.tex.Width, bar1.tex.Height);
             bar2Bounds = new Rectangle((int)bar2.pos.X, (int)bar2.pos.Y, bar2.tex.Width, bar2.tex.Height);
 
-            ball.Update(ball, bar1Bounds, bar2Bounds, _graphics, gameTime, ping, ref leftScore, ref rightScore);
-            bar1.Update(bar1, _graphics);
-            bar2.Update(bar2, _graphics);
+            ball.Update(ball, bar1Bounds, bar2Bounds, graphics, gameTime, ping, ref leftScore, ref rightScore);
+            bar1.Update(bar1, graphics);
+            bar2.Update(bar2, graphics);
         }
 
         #region Private Methods

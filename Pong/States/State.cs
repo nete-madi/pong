@@ -17,7 +17,7 @@ namespace Pong.States
             _graphicsDevice = graphicsDevice;
         }
         public abstract void LoadContent();
-        public abstract void Update(GameTime gameTime);
+        public abstract void Update(GameTime gameTime, GraphicsDeviceManager graphics);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }
 }
