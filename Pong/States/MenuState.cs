@@ -56,8 +56,7 @@ namespace Pong.States
 
             };
 
-        }
-         
+        }         
         public override void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             foreach (var component in _components)

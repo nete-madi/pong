@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Pong.Controls
 {
@@ -25,7 +26,7 @@ namespace Pong.Controls
 
         public float Layer { get; set; }
 
-        public String Text { get; set; }
+        public string Text { get; set; }
 
         public Color PenColor { get; set; }
 
@@ -90,6 +91,8 @@ namespace Pong.Controls
                 if (_curMouseState.LeftButton == ButtonState.Released && _prevMouseState.LeftButton == ButtonState.Pressed)
                 {
                     Click?.Invoke(this, new EventArgs());
+                    Clicked = true;
+                    Debug.WriteLine("HERE again!!!");
                 } 
             }
         }
