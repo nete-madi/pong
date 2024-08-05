@@ -41,7 +41,7 @@ namespace Pong.States
                 new Button(button, buttonFont)
                 {
                     Text = "Start New Game",
-                    Position = new Vector2(Game1.ScreenWidth / 2, 400),
+                    Position = new Vector2(Game1.ScreenWidth / 3, 400),
                     Click = new EventHandler(Button_1Player_Clicked),
                     Layer = 0.1f
                 },
@@ -49,7 +49,7 @@ namespace Pong.States
                 new Button(button, buttonFont)
                 {
                     Text = "Exit",
-                    Position = new Vector2(Game1.ScreenWidth / 2, 400),
+                    Position = new Vector2(Game1.ScreenWidth - Game1.ScreenWidth / 3, 400),
                     Click = new EventHandler(Button_Quit_Clicked),
                     Layer = 0.1f
                 },
