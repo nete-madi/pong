@@ -56,6 +56,11 @@ namespace Pong.States
             ball.Update(ball, bar1Bounds, bar2Bounds, graphics, gameTime, ping, ref leftScore, ref rightScore);
             bar1.Update(bar1, graphics);
             bar2.Update(bar2, graphics);
+
+            if (leftScore == 0)
+            {
+                _game.ChangeState(new WinState(_game, _graphicsDevice, _content));
+            }
         }
 
         #region Private Methods

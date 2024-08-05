@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Pong.Controls;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
+using System.Reflection.Emit;
 
 namespace Pong.States
 {
@@ -24,8 +26,10 @@ namespace Pong.States
             {
                 component.Draw(gameTime, spriteBatch);
             }
-            spriteBatch.DrawString(buttonFont, "YOU WIN", new Vector2(325, 50), Color.White);
-            spriteBatch.DrawString(buttonFont, "Congratulations player 1!", new Vector2(100, 150), Color.White);
+            float offsetXOver = (Game1.ScreenWidth / 2) - (buttonFont.MeasureString("GAME OVER").X / 2);
+            float offsetXCongrats = (Game1.ScreenWidth / 2) - (buttonFont.MeasureString("Congratulations player 1!").X / 3);
+            spriteBatch.DrawString(buttonFont, "GAME OVER", new Vector2(offsetXOver, buttonFont.MeasureString("GAME OVER").Y), Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(buttonFont, "Congratulations player 1!", new Vector2(offsetXCongrats, buttonFont.MeasureString("Congratulations player 1!").Y + 150), Color.White, 0f, new Vector2(0, 0), 0.75f, SpriteEffects.None, 0f);
             spriteBatch.End();
         }
 
@@ -39,7 +43,7 @@ namespace Pong.States
                 new Button(button, buttonFont)
                 {
                     Text = "PLAY AGAIN",
-                    Position = new Vector2(Game1.ScreenWidth / 3, 400),
+                    Position = new Vector2(Game1.ScreenWidth / 2, 400),
                     Click = new EventHandler(Button_1Player_Clicked),
                     Layer = 0.1f
                 }
