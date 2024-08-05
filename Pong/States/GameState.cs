@@ -57,9 +57,13 @@ namespace Pong.States
             bar1.Update(bar1, graphics);
             bar2.Update(bar2, graphics);
 
-            if (leftScore == 0)
+            if (leftScore == 10)
             {
-                _game.ChangeState(new WinState(_game, _graphicsDevice, _content));
+                _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 0));
+            }
+            if (rightScore == 10)
+            {
+                _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 1));
             }
         }
 
