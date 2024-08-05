@@ -11,7 +11,6 @@ namespace Pong.States
     {
         //private Texture2D menuBg;
         private List<Component> _components;
-        private GraphicsDeviceManager _graphics;
         private SpriteFont buttonFont;
         public MenuState (Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -63,8 +62,6 @@ namespace Pong.States
             {
                 component.Update(gameTime);
             }
-
-            _graphics = graphics;
         }
 
         private void Button_1Player_Clicked(object sender, EventArgs args)
