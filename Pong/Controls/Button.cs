@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Pong.Controls
 {
@@ -70,10 +71,10 @@ namespace Pong.Controls
 
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
+                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 4);
                 var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColor, 0f, new Vector2(0,0), 1f, SpriteEffects.None, Layer + 0.01f);
+                spriteBatch.DrawString(_font, Text, new Vector2(x, y), Color.Black, 0f, new Vector2(0,0), 0.5f, SpriteEffects.None, Layer + 0.01f);
             }
         }
         public override void Update(GameTime gameTime)
@@ -92,7 +93,6 @@ namespace Pong.Controls
                 {
                     Click?.Invoke(this, new EventArgs());
                     Clicked = true;
-                    Debug.WriteLine("HERE again!!!");
                 } 
             }
         }
